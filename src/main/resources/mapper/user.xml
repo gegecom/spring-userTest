@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hello.dao.TbUserMapper">
+
+
+    <parameterMap type="java.util.Map" id="insertParam">
+        <parameter property="UserId" jdbcType="VARCHAR"/>
+        <parameter property="userName" jdbcType="VARCHAR"/>
+        <parameter property="password" jdbcType="VARCHAR"/>
+        <parameter property="phone" jdbcType="VARCHAR"/>
+    </parameterMap>
+
+    <insert id="insertData" parameterMap="insertParam">
+		insert into ${tableName}(pindex,pvalue) values(#{index},#{value})
+	</insert>
+
+    <select id="selectData" parameterMap="insertParam" resultType="java.lang.String">
+        select pvalue from ${tableName}
+        <where>
+            pindex = #{index}
+        </where>
+    </select>
+
+    <select id="selectAllData" parameterType="java.lang.String" resultType="java.lang.String">
+		select pvalue from ${_parameter}
+	</select>
+    <select id="selectUser" parameterType="java.lang.String" resultType="java.lang.String">
+		select pvalue from t_user
+		 <where>
+             userName = ${userName}
+         </where>
+	</select>
+
+</mapper>
